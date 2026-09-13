@@ -1,0 +1,2310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎸 일렉트릭 기타 학습 로드맵</title>
+  <style>
+    /* ========== CSS Variables & Reset ========== */
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-card: #1a1a2e;
+      --bg-card-hover: #1e1e35;
+      --text-primary: #e8e8f0;
+      --text-secondary: #a0a0b8;
+      --text-muted: #6a6a80;
+      --accent-blue: #4a9eff;
+      --accent-purple: #8b5cf6;
+      --accent-pink: #ec4899;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-red: #ef4444;
+      --accent-cyan: #06b6d4;
+      --border-color: #2a2a40;
+      --gradient-1: linear-gradient(135deg, #4a9eff, #8b5cf6);
+      --gradient-2: linear-gradient(135deg, #8b5cf6, #ec4899);
+      --gradient-3: linear-gradient(135deg, #10b981, #06b6d4);
+      --gradient-4: linear-gradient(135deg, #f59e0b, #ef4444);
+      --radius: 12px;
+      --radius-lg: 20px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.4);
+      --shadow-lg: 0 8px 40px rgba(0,0,0,0.6);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ========== Scrollbar ========== */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent-blue); }
+
+    /* ========== Navigation ========== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0 2rem;
+      transition: var(--transition);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 0.5rem;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+      background: rgba(74, 158, 255, 0.1);
+    }
+
+    .nav-links a.active {
+      color: var(--accent-blue);
+      background: rgba(74, 158, 255, 0.15);
+    }
+
+    /* ========== Hero ========== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.35;
+      filter: blur(2px);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(10, 10, 15, 0.3) 0%,
+        rgba(10, 10, 15, 0.7) 50%,
+        rgba(10, 10, 15, 1) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 2rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(74, 158, 255, 0.15);
+      border: 1px solid rgba(74, 158, 255, 0.3);
+      color: var(--accent-blue);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+
+    .hero h1 .gradient-text {
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--gradient-1);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(74, 158, 255, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px rgba(74, 158, 255, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--accent-blue);
+    }
+
+    /* ========== Main Container ========== */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+    }
+
+    .label-blue { background: rgba(74,158,255,0.12); color: var(--accent-blue); }
+    .label-purple { background: rgba(139,92,246,0.12); color: var(--accent-purple); }
+    .label-green { background: rgba(16,185,129,0.12); color: var(--accent-green); }
+    .label-orange { background: rgba(245,158,11,0.12); color: var(--accent-orange); }
+    .label-pink { background: rgba(236,72,153,0.12); color: var(--accent-pink); }
+    .label-cyan { background: rgba(6,182,212,0.12); color: var(--accent-cyan); }
+    .label-red { background: rgba(239,68,68,0.12); color: var(--accent-red); }
+
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+    }
+
+    /* ========== Status Cards ========== */
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .status-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .status-card:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .status-card .icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .status-card h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .status-card p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    /* ========== Principle Box ========== */
+    .principle-box {
+      background: linear-gradient(135deg, rgba(74,158,255,0.08), rgba(139,92,246,0.08));
+      border: 1px solid rgba(74,158,255,0.2);
+      border-radius: var(--radius-lg);
+      padding: 2rem 2.5rem;
+      margin: 3rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .principle-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gradient-1);
+    }
+
+    .principle-box h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .principle-box p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    /* ========== Phase Timeline ========== */
+    .phase-timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .phase-step {
+      position: relative;
+      text-align: center;
+      padding: 1.2rem 0.8rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+
+    .phase-step:hover {
+      border-color: var(--border-color);
+      background: var(--bg-card);
+    }
+
+    .phase-step.active {
+      background: var(--bg-card);
+      border-color: var(--accent-blue);
+    }
+
+    .phase-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .phase-step:nth-child(1) .phase-num { background: rgba(74,158,255,0.2); color: var(--accent-blue); }
+    .phase-step:nth-child(2) .phase-num { background: rgba(139,92,246,0.2); color: var(--accent-purple); }
+    .phase-step:nth-child(3) .phase-num { background: rgba(16,185,129,0.2); color: var(--accent-green); }
+    .phase-step:nth-child(4) .phase-num { background: rgba(245,158,11,0.2); color: var(--accent-orange); }
+
+    .phase-step h4 {
+      font-size: 0.8rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .phase-step .duration {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .phase-connector {
+      display: none;
+    }
+
+    /* ========== Phase Sections ========== */
+    .phase-section {
+      margin-bottom: 4rem;
+      padding: 2.5rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      transition: var(--transition);
+    }
+
+    .phase-section:hover {
+      border-color: rgba(74, 158, 255, 0.2);
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .phase-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .phase-header h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .phase-header .sub {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    /* ========== Content Items ========== */
+    .content-block {
+      margin-bottom: 2rem;
+    }
+
+    .content-block h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .content-block h3 .num {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .content-block ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .content-block li {
+      padding: 0.4rem 0 0.4rem 1.5rem;
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .content-block li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent-blue);
+    }
+
+    .tip-box {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .tip-box strong {
+      color: var(--accent-green);
+    }
+
+    .warning-box {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .warning-box strong {
+      color: var(--accent-orange);
+    }
+
+    .danger-box {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .danger-box strong {
+      color: var(--accent-red);
+    }
+
+    /* ========== SVG Fretboard Diagrams ========== */
+    .diagram-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+    }
+
+    .diagram-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .diagram-container svg {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .diagram-legend {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    /* ========== Scale Tabs ========== */
+    .scale-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .scale-tab {
+      padding: 0.4rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+      background: transparent;
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .scale-tab:hover {
+      border-color: var(--accent-purple);
+      color: var(--text-primary);
+    }
+
+    .scale-tab.active {
+      background: rgba(139, 92, 246, 0.15);
+      border-color: var(--accent-purple);
+      color: var(--accent-purple);
+    }
+
+    .scale-panel { display: none; }
+    .scale-panel.active { display: block; }
+
+    /* ========== Routine Table ========== */
+    .routine-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.5rem 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .routine-table thead th {
+      background: var(--bg-card);
+      padding: 0.8rem 1rem;
+      text-align: left;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .routine-table tbody td {
+      padding: 0.8rem 1rem;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .routine-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .routine-table tbody tr:hover {
+      background: rgba(74, 158, 255, 0.05);
+    }
+
+    .time-badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: rgba(74, 158, 255, 0.12);
+      color: var(--accent-blue);
+    }
+
+    .importance-badge {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+
+    .importance-high {
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--accent-red);
+    }
+
+    .importance-med {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--accent-orange);
+    }
+
+    /* ========== Resource Cards ========== */
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .resource-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .resource-card:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .resource-card h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .resource-card .tag {
+      font-size: 0.75rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    .resource-card p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    /* ========== CTA Section ========== */
+    .cta-section {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, rgba(74,158,255,0.06), rgba(139,92,246,0.06));
+      border: 1px solid rgba(74,158,255,0.15);
+      border-radius: var(--radius-lg);
+      margin: 2rem 0 4rem;
+    }
+
+    .cta-section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+      text-align: left;
+    }
+
+    .cta-step {
+      background: rgba(0,0,0,0.3);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .cta-step .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 0.8rem;
+      background: var(--gradient-1);
+      color: #fff;
+    }
+
+    .cta-step h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .cta-step p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    /* ========== Footer ========== */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* ========== Interval Table ========== */
+    .interval-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 0.6rem;
+      margin: 1rem 0;
+    }
+
+    .interval-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.8rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .interval-card:hover {
+      border-color: var(--accent-blue);
+      background: var(--bg-card-hover);
+    }
+
+    .interval-name {
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .interval-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .interval-frets {
+      font-size: 0.8rem;
+      color: var(--accent-cyan);
+      margin-top: 0.3rem;
+    }
+
+    /* ========== Diatonic Chords ========== */
+    .chord-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+      margin: 1rem 0;
+    }
+
+    .chord-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.6rem 1rem;
+      text-align: center;
+      min-width: 70px;
+      transition: var(--transition);
+    }
+
+    .chord-item:hover {
+      border-color: var(--accent-green);
+      background: var(--bg-card-hover);
+    }
+
+    .chord-degree {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.1rem;
+    }
+
+    .chord-name {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .chord-quality {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
+
+    .chord-arrow {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+    }
+
+    /* ========== Animations ========== */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== Responsive ========== */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+
+      .phase-timeline {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .phase-section {
+        padding: 1.5rem;
+      }
+
+      .hero h1 { font-size: 2rem; }
+
+      .status-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-steps {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 3rem 0;
+      }
+
+      .interval-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ========== SVG note tooltip ========== */
+    .note-tooltip {
+      position: fixed;
+      background: var(--bg-card);
+      border: 1px solid var(--accent-blue);
+      color: var(--text-primary);
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0;
+      transition: opacity 0.15s;
+      box-shadow: var(--shadow);
+    }
+
+    .note-tooltip.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Tooltip element -->
+<div class="note-tooltip" id="noteTooltip"></div>
+
+<!-- ========== Navigation ========== -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <div class="nav-logo">🎸 Guitar Roadmap</div>
+    <ul class="nav-links">
+      <li><a href="#status">현재 상태</a></li>
+      <li><a href="#phase1">Phase 1</a></li>
+      <li><a href="#phase2">Phase 2</a></li>
+      <li><a href="#phase3">Phase 3</a></li>
+      <li><a href="#phase4">Phase 4</a></li>
+      <li><a href="#routine">연습 루틴</a></li>
+      <li><a href="#resources">추천 자료</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ========== Hero Section ========== -->
+<header class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="images/hero.jpg" alt="Electric Guitar" loading="eager" onerror="if(this.src!='https://wallpapercave.com/wp/wp9907199.jpg'){this.src='https://wallpapercave.com/wp/wp9907199.jpg'}else{this.parentElement.style.background='linear-gradient(135deg, #0a0a2e, #1a0a3e, #0a1a2e)'}" />
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🔥 25년 만의 복귀, 이번엔 제대로</div>
+    <h1>
+      일렉트릭 기타<br>
+      <span class="gradient-text">학습 로드맵</span>
+    </h1>
+    <p>
+      TAB 카피를 넘어, 기타를 이해하며 연주하고<br>
+      백킹트랙 위에서 자유롭게 JAM 하기 위한 단계별 가이드
+    </p>
+    <div class="hero-cta">
+      <a href="#phase2" class="btn btn-primary">🎵 지금 바로 시작하기</a>
+      <a href="#status" class="btn btn-secondary">📊 현재 상태 진단</a>
+    </div>
+  </div>
+</header>
+
+<!-- ========== Main Content ========== -->
+<main class="container">
+
+  <!-- ===== Current Status ===== -->
+  <section id="status" class="animate-on-scroll">
+    <span class="section-label label-blue">📊 진단</span>
+    <h2 class="section-title">현재 상태 분석</h2>
+    <p class="section-desc">25년 만에 다시 기타를 잡았다면, 당신의 현재 위치를 파악하는 것이 첫걸음입니다.</p>
+
+    <div class="status-grid">
+      <div class="status-card" style="border-left: 3px solid var(--accent-green);">
+        <div class="icon">✅</div>
+        <h4>피킹 & 운지법 향상</h4>
+        <p>꾸준한 연습으로 과거보다 기본기가 좋아진 상태</p>
+      </div>
+      <div class="status-card" style="border-left: 3px solid var(--accent-green);">
+        <div class="icon">✅</div>
+        <h4>TAB 카피 가능</h4>
+        <p>Tab 악보와 가이드 영상을 보며 곡을 따라칠 수 있음</p>
+      </div>
+      <div class="status-card" style="border-left: 3px solid var(--accent-green);">
+        <div class="icon">✅</div>
+        <h4>학습 의지 확실</h4>
+        <p>단순 카피를 넘어 기타를 이해하고 싶은 강한 동기</p>
+      </div>
+      <div class="status-card" style="border-left: 3px solid var(--accent-red);">
+        <div class="icon">🔺</div>
+        <h4>화성학 기억 희미</h4>
+        <p>예전에 배운 화성악 내용이 대부분 잊혀진 상태</p>
+      </div>
+      <div class="status-card" style="border-left: 3px solid var(--accent-red);">
+        <div class="icon">🔺</div>
+        <h4>"왜" 그 음인지 모름</h4>
+        <p>TAB은 무엇을 치는지 알려주지만, 왜 그 음인지는 알려주지 않음</p>
+      </div>
+      <div class="status-card" style="border-left: 3px solid var(--accent-red);">
+        <div class="icon">🔺</div>
+        <h4>자유연주 불가</h4>
+        <p>백킹트랙에 맞춰 즉흥 연주나 JAM이 아직 어려움</p>
+      </div>
+    </div>
+
+    <div class="principle-box">
+      <h3>💡 핵심 원칙</h3>
+      <p><strong>"이론 → 연습"이 아니라 "이론 + 연습"을 동시에 하세요.</strong><br>
+      스케일을 외우면 바로 백킹트랙에 적용하고, 코드를 배우면 바로 곡에서 찾아보세요. 이론만 공부하면 지루해지고, 연습만 하면 벽에 부딪힙니다.</p>
+    </div>
+  </section>
+
+  <!-- ===== Phase Overview ===== -->
+  <section id="overview" class="animate-on-scroll">
+    <span class="section-label label-purple">🗺️ 로드맵 개요</span>
+    <h2 class="section-title">4단계 학습 경로</h2>
+    <p class="section-desc">각 단계를 클릭하면 해당 섹션으로 이동합니다.</p>
+
+    <div class="phase-timeline">
+      <a href="#phase1" class="phase-step" style="text-decoration:none; color:inherit;">
+        <div class="phase-num">1</div>
+        <h4>지판 이해</h4>
+        <div class="duration">1~2개월</div>
+      </a>
+      <a href="#phase2" class="phase-step" style="text-decoration:none; color:inherit;">
+        <div class="phase-num">2</div>
+        <h4>펜타토닉 & 블루스</h4>
+        <div class="duration">2~3개월</div>
+      </a>
+      <a href="#phase3" class="phase-step" style="text-decoration:none; color:inherit;">
+        <div class="phase-num">3</div>
+        <h4>코드 톤 & 화성</h4>
+        <div class="duration">3~4개월</div>
+      </a>
+      <a href="#phase4" class="phase-step" style="text-decoration:none; color:inherit;">
+        <div class="phase-num">4</div>
+        <h4>모드 & 확장</h4>
+        <div class="duration">6개월~</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== Phase 1 ===== -->
+  <section id="phase1" class="animate-on-scroll">
+    <div class="phase-section">
+      <div class="phase-header">
+        <div class="phase-icon" style="background: rgba(74,158,255,0.15);">🎯</div>
+        <div>
+          <span class="section-label label-blue">Phase 1 · 1~2개월</span>
+          <h2>지판 이해의 기초</h2>
+          <div class="sub">기타 지판이 "어떻게 구성되어 있는지" 이해하기</div>
+        </div>
+      </div>
+
+      <!-- 1-1: Note Names -->
+      <div class="content-block">
+        <h3>
+          <span class="num" style="background: rgba(74,158,255,0.2); color: var(--accent-blue);">1</span>
+          음이름과 지판 매핑
+        </h3>
+        <ul>
+          <li><strong>6번줄(E)과 5번줄(A)의 음이름</strong>을 먼저 외우세요</li>
+          <li>바레코드의 루트, 스케일의 시작점이 모두 이 두 줄에서 출발합니다</li>
+          <li>연습법: 메트로놈 60BPM에 맞춰 음이름을 말하며 한 음씩 치기</li>
+        </ul>
+
+        <!-- SVG: Fretboard Note Map -->
+        <div class="diagram-container">
+          <div class="diagram-title">📍 5번줄 & 6번줄 음이름 지판 맵 (0~12프렛, TAB 시점)</div>
+          <svg viewBox="0 0 840 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="기타 5번줄과 6번줄 음이름 지판 맵">
+            <!-- Fret numbers -->
+            <text x="60" y="18" text-anchor="middle" fill="#6a6a80" font-size="11" font-family="monospace">0</text>
+            <text x="120" y="18" text-anchor="middle" fill="#6a6a80" font-size="11" font-family="monospace">1</text>
+            <text x="180" y="18" text-anchor="middle" fill="#6a6a80" font-size="11" font-family="monospace">2</text>
+            <text x="240" y="18" text-anchor="middle" fill="#6a6a80" font-size="11" font-family="monospace">3</text>
+            <text x="300" y="18" text-anchor="middle" fill="#6a6a80" font-size="11" font-family="monospace">4</text>
+            <text x="360" y="18" text-anchor="middle" fill="#6a6a80" font-size="11" font-family="monospace">5</text>
+            <text x="420" y="18" text-anchor="middle" fill="#6a6a80" font-size="11" font-family="monospace">6</text>
+            <text x="480" y="18" text-anchor="middle" fill="#6a6a80" font-size="11" font-family="monospace">7</text>
+            <text x="540" y="18" text-anchor="middle" fill="#6a6a80" font-size="11" font-family="monospace">8</text>
+            <text x="600" y="18" text-anchor="middle" fill="#6a6a80" font-size="11" font-family="monospace">9</text>
+            <text x="660" y="18" text-anchor="middle" fill="#6a6a80" font-size="11" font-family="monospace">10</text>
+            <text x="720" y="18" text-anchor="middle" fill="#6a6a80" font-size="11" font-family="monospace">11</text>
+            <text x="780" y="18" text-anchor="middle" fill="#6a6a80" font-size="11" font-family="monospace">12</text>
+
+            <!-- String labels -->
+            <text x="18" y="60" text-anchor="middle" fill="#a0a0b8" font-size="13" font-weight="bold">5A</text>
+            <text x="18" y="115" text-anchor="middle" fill="#a0a0b8" font-size="13" font-weight="bold">6E</text>
+
+            <!-- Nut -->
+            <line x1="35" y1="30" x2="35" y2="140" stroke="#a0a0b8" stroke-width="4"/>
+
+            <!-- Fret lines -->
+            <line x1="90" y1="30" x2="90" y2="140" stroke="#2a2a40" stroke-width="1.5"/>
+            <line x1="150" y1="30" x2="150" y2="140" stroke="#2a2a40" stroke-width="1.5"/>
+            <line x1="210" y1="30" x2="210" y2="140" stroke="#2a2a40" stroke-width="1.5"/>
+            <line x1="270" y1="30" x2="270" y2="140" stroke="#2a2a40" stroke-width="1.5"/>
+            <line x1="330" y1="30" x2="330" y2="140" stroke="#2a2a40" stroke-width="1.5"/>
+            <line x1="390" y1="30" x2="390" y2="140" stroke="#2a2a40" stroke-width="1.5"/>
+            <line x1="450" y1="30" x2="450" y2="140" stroke="#2a2a40" stroke-width="1.5"/>
+            <line x1="510" y1="30" x2="510" y2="140" stroke="#2a2a40" stroke-width="1.5"/>
+            <line x1="570" y1="30" x2="570" y2="140" stroke="#2a2a40" stroke-width="1.5"/>
+            <line x1="630" y1="30" x2="630" y2="140" stroke="#2a2a40" stroke-width="1.5"/>
+            <line x1="690" y1="30" x2="690" y2="140" stroke="#2a2a40" stroke-width="1.5"/>
+            <line x1="750" y1="30" x2="750" y2="140" stroke="#2a2a40" stroke-width="1.5"/>
+            <line x1="810" y1="30" x2="810" y2="140" stroke="#2a2a40" stroke-width="1.5"/>
+
+            <!-- Fret dots (3, 5, 7, 9, 12) -->
+            <circle cx="240" cy="148" r="3" fill="#3a3a50"/>
+            <circle cx="360" cy="148" r="3" fill="#3a3a50"/>
+            <circle cx="480" cy="148" r="3" fill="#3a3a50"/>
+            <circle cx="600" cy="148" r="3" fill="#3a3a50"/>
+            <circle cx="773" cy="148" r="3" fill="#3a3a50"/>
+            <circle cx="793" cy="148" r="3" fill="#3a3a50"/>
+
+            <!-- Strings -->
+            <line x1="35" y1="55" x2="810" y2="55" stroke="#505065" stroke-width="1.6"/>
+            <line x1="35" y1="110" x2="810" y2="110" stroke="#505065" stroke-width="2.2"/>
+
+            <!-- 5th string notes (A): A A# B C C# D D# E F F# G G# A -->
+            <g class="fretboard-note" data-note="A" data-octave="2">
+              <circle cx="60" cy="55" r="16" fill="#8b5cf6" opacity="0.9"/><text x="60" y="60" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">A</text>
+            </g>
+            <g class="fretboard-note" data-note="A#" data-octave="2">
+              <circle cx="120" cy="55" r="16" fill="#2a2a40" stroke="#6a6a80" stroke-width="1"/><text x="120" y="60" text-anchor="middle" fill="#6a6a80" font-size="10">A#</text>
+            </g>
+            <g class="fretboard-note" data-note="B" data-octave="2">
+              <circle cx="180" cy="55" r="16" fill="#2a2a40" stroke="#8b5cf6" stroke-width="1.5"/><text x="180" y="60" text-anchor="middle" fill="#a0a0b8" font-size="11" font-weight="bold">B</text>
+            </g>
+            <g class="fretboard-note" data-note="C" data-octave="3">
+              <circle cx="240" cy="55" r="16" fill="#8b5cf6" opacity="0.9"/><text x="240" y="60" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">C</text>
+            </g>
+            <g class="fretboard-note" data-note="C#" data-octave="3">
+              <circle cx="300" cy="55" r="16" fill="#2a2a40" stroke="#6a6a80" stroke-width="1"/><text x="300" y="60" text-anchor="middle" fill="#6a6a80" font-size="10">C#</text>
+            </g>
+            <g class="fretboard-note" data-note="D" data-octave="3">
+              <circle cx="360" cy="55" r="16" fill="#2a2a40" stroke="#8b5cf6" stroke-width="1.5"/><text x="360" y="60" text-anchor="middle" fill="#a0a0b8" font-size="11" font-weight="bold">D</text>
+            </g>
+            <g class="fretboard-note" data-note="D#" data-octave="3">
+              <circle cx="420" cy="55" r="16" fill="#2a2a40" stroke="#6a6a80" stroke-width="1"/><text x="420" y="60" text-anchor="middle" fill="#6a6a80" font-size="10">D#</text>
+            </g>
+            <g class="fretboard-note" data-note="E" data-octave="3">
+              <circle cx="480" cy="55" r="16" fill="#8b5cf6" opacity="0.9"/><text x="480" y="60" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">E</text>
+            </g>
+            <g class="fretboard-note" data-note="F" data-octave="3">
+              <circle cx="540" cy="55" r="16" fill="#2a2a40" stroke="#8b5cf6" stroke-width="1.5"/><text x="540" y="60" text-anchor="middle" fill="#a0a0b8" font-size="11" font-weight="bold">F</text>
+            </g>
+            <g class="fretboard-note" data-note="F#" data-octave="3">
+              <circle cx="600" cy="55" r="16" fill="#2a2a40" stroke="#6a6a80" stroke-width="1"/><text x="600" y="60" text-anchor="middle" fill="#6a6a80" font-size="10">F#</text>
+            </g>
+            <g class="fretboard-note" data-note="G" data-octave="3">
+              <circle cx="660" cy="55" r="16" fill="#2a2a40" stroke="#8b5cf6" stroke-width="1.5"/><text x="660" y="60" text-anchor="middle" fill="#a0a0b8" font-size="11" font-weight="bold">G</text>
+            </g>
+            <g class="fretboard-note" data-note="G#" data-octave="3">
+              <circle cx="720" cy="55" r="16" fill="#2a2a40" stroke="#6a6a80" stroke-width="1"/><text x="720" y="60" text-anchor="middle" fill="#6a6a80" font-size="10">G#</text>
+            </g>
+            <g class="fretboard-note" data-note="A" data-octave="3">
+              <circle cx="780" cy="55" r="16" fill="#8b5cf6" opacity="0.9"/><text x="780" y="60" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">A</text>
+            </g>
+
+            <!-- 6th string notes (E): E F F# G G# A A# B C C# D D# E -->
+            <g class="fretboard-note" data-note="E" data-octave="2">
+              <circle cx="60" cy="110" r="16" fill="#4a9eff" opacity="0.9"/><text x="60" y="115" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">E</text>
+            </g>
+            <g class="fretboard-note" data-note="F" data-octave="2">
+              <circle cx="120" cy="110" r="16" fill="#2a2a40" stroke="#4a9eff" stroke-width="1.5"/><text x="120" y="115" text-anchor="middle" fill="#a0a0b8" font-size="11" font-weight="bold">F</text>
+            </g>
+            <g class="fretboard-note" data-note="F#" data-octave="2">
+              <circle cx="180" cy="110" r="16" fill="#2a2a40" stroke="#6a6a80" stroke-width="1"/><text x="180" y="115" text-anchor="middle" fill="#6a6a80" font-size="10">F#</text>
+            </g>
+            <g class="fretboard-note" data-note="G" data-octave="2">
+              <circle cx="240" cy="110" r="16" fill="#2a2a40" stroke="#4a9eff" stroke-width="1.5"/><text x="240" y="115" text-anchor="middle" fill="#a0a0b8" font-size="11" font-weight="bold">G</text>
+            </g>
+            <g class="fretboard-note" data-note="G#" data-octave="2">
+              <circle cx="300" cy="110" r="16" fill="#2a2a40" stroke="#6a6a80" stroke-width="1"/><text x="300" y="115" text-anchor="middle" fill="#6a6a80" font-size="10">G#</text>
+            </g>
+            <g class="fretboard-note" data-note="A" data-octave="2">
+              <circle cx="360" cy="110" r="16" fill="#4a9eff" opacity="0.9"/><text x="360" y="115" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">A</text>
+            </g>
+            <g class="fretboard-note" data-note="A#" data-octave="2">
+              <circle cx="420" cy="110" r="16" fill="#2a2a40" stroke="#6a6a80" stroke-width="1"/><text x="420" y="115" text-anchor="middle" fill="#6a6a80" font-size="10">A#</text>
+            </g>
+            <g class="fretboard-note" data-note="B" data-octave="2">
+              <circle cx="480" cy="110" r="16" fill="#2a2a40" stroke="#4a9eff" stroke-width="1.5"/><text x="480" y="115" text-anchor="middle" fill="#a0a0b8" font-size="11" font-weight="bold">B</text>
+            </g>
+            <g class="fretboard-note" data-note="C" data-octave="3">
+              <circle cx="540" cy="110" r="16" fill="#4a9eff" opacity="0.9"/><text x="540" y="115" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">C</text>
+            </g>
+            <g class="fretboard-note" data-note="C#" data-octave="3">
+              <circle cx="600" cy="110" r="16" fill="#2a2a40" stroke="#6a6a80" stroke-width="1"/><text x="600" y="115" text-anchor="middle" fill="#6a6a80" font-size="10">C#</text>
+            </g>
+            <g class="fretboard-note" data-note="D" data-octave="3">
+              <circle cx="660" cy="110" r="16" fill="#2a2a40" stroke="#4a9eff" stroke-width="1.5"/><text x="660" y="115" text-anchor="middle" fill="#a0a0b8" font-size="11" font-weight="bold">D</text>
+            </g>
+            <g class="fretboard-note" data-note="D#" data-octave="3">
+              <circle cx="720" cy="110" r="16" fill="#2a2a40" stroke="#6a6a80" stroke-width="1"/><text x="720" y="115" text-anchor="middle" fill="#6a6a80" font-size="10">D#</text>
+            </g>
+            <g class="fretboard-note" data-note="E" data-octave="3">
+              <circle cx="780" cy="110" r="16" fill="#4a9eff" opacity="0.9"/><text x="780" y="115" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">E</text>
+            </g>
+          </svg>
+          <div class="diagram-legend">
+            <div class="legend-item"><div class="legend-dot" style="background: #8b5cf6;"></div> 5번줄 자연음</div>
+            <div class="legend-item"><div class="legend-dot" style="background: #4a9eff;"></div> 6번줄 자연음</div>
+            <div class="legend-item"><div class="legend-dot" style="background: #2a2a40; border: 1px solid #6a6a80;"></div> 반음(#/♭)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1-2: Intervals -->
+      <div class="content-block">
+        <h3>
+          <span class="num" style="background: rgba(74,158,255,0.2); color: var(--accent-blue);">2</span>
+          인터벌(음정) 감각
+        </h3>
+        <ul>
+          <li><strong>소리로 느끼는 것</strong>이 핵심 — 이론으로만 외우지 마세요</li>
+          <li>기타에서 인터벌의 "모양(shape)"을 익히면 지판 전체가 보이기 시작합니다</li>
+        </ul>
+
+        <div class="interval-grid">
+          <div class="interval-card">
+            <div class="interval-name">완전 1도</div>
+            <div class="interval-desc">Unison</div>
+            <div class="interval-frets">0 프렛</div>
+          </div>
+          <div class="interval-card">
+            <div class="interval-name" style="color: var(--accent-pink);">단 3도</div>
+            <div class="interval-desc">Minor 3rd</div>
+            <div class="interval-frets">3 프렛</div>
+          </div>
+          <div class="interval-card">
+            <div class="interval-name" style="color: var(--accent-green);">장 3도</div>
+            <div class="interval-desc">Major 3rd</div>
+            <div class="interval-frets">4 프렛</div>
+          </div>
+          <div class="interval-card">
+            <div class="interval-name" style="color: var(--accent-blue);">완전 5도</div>
+            <div class="interval-desc">Perfect 5th</div>
+            <div class="interval-frets">7 프렛</div>
+          </div>
+          <div class="interval-card">
+            <div class="interval-name" style="color: var(--accent-orange);">단 7도</div>
+            <div class="interval-desc">Minor 7th</div>
+            <div class="interval-frets">10 프렛</div>
+          </div>
+          <div class="interval-card">
+            <div class="interval-name" style="color: var(--accent-purple);">장 7도</div>
+            <div class="interval-desc">Major 7th</div>
+            <div class="interval-frets">11 프렛</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1-3: Major Scale -->
+      <div class="content-block">
+        <h3>
+          <span class="num" style="background: rgba(74,158,255,0.2); color: var(--accent-blue);">3</span>
+          메이저 스케일 (1~2개 포지션)
+        </h3>
+        <ul>
+          <li>C 메이저 스케일을 <strong>한 포지션</strong>에서 확실히 익히기</li>
+          <li>"도레미파솔라시도"를 기타 위에서 자유롭게 칠 수 있으면 OK</li>
+          <li>바로 <strong>C 메이저 백킹트랙</strong>을 틀고 스케일 오르내리기 연습</li>
+        </ul>
+
+        <!-- SVG: C Major Scale Position -->
+        <div class="diagram-container">
+          <div class="diagram-title">🎼 C 메이저 스케일 (오픈 포지션)</div>
+          <svg viewBox="0 0 460 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="C 메이저 스케일 오픈 포지션">
+            <!-- Fret numbers -->
+            <text x="80" y="20" text-anchor="middle" fill="#6a6a80" font-size="12" font-family="monospace">0</text>
+            <text x="155" y="20" text-anchor="middle" fill="#6a6a80" font-size="12" font-family="monospace">1</text>
+            <text x="230" y="20" text-anchor="middle" fill="#6a6a80" font-size="12" font-family="monospace">2</text>
+            <text x="305" y="20" text-anchor="middle" fill="#6a6a80" font-size="12" font-family="monospace">3</text>
+            <text x="380" y="20" text-anchor="middle" fill="#6a6a80" font-size="12" font-family="monospace">4</text>
+
+            <!-- String labels -->
+            <text x="25" y="55" text-anchor="middle" fill="#a0a0b8" font-size="11">1(E)</text>
+            <text x="25" y="95" text-anchor="middle" fill="#a0a0b8" font-size="11">2(B)</text>
+            <text x="25" y="135" text-anchor="middle" fill="#a0a0b8" font-size="11">3(G)</text>
+            <text x="25" y="175" text-anchor="middle" fill="#a0a0b8" font-size="11">4(D)</text>
+            <text x="25" y="215" text-anchor="middle" fill="#a0a0b8" font-size="11">5(A)</text>
+            <text x="25" y="255" text-anchor="middle" fill="#a0a0b8" font-size="11">6(E)</text>
+
+            <!-- Nut -->
+            <line x1="55" y1="35" x2="55" y2="265" stroke="#a0a0b8" stroke-width="4"/>
+
+            <!-- Fret lines -->
+            <line x1="118" y1="35" x2="118" y2="265" stroke="#2a2a40" stroke-width="1.5"/>
+            <line x1="193" y1="35" x2="193" y2="265" stroke="#2a2a40" stroke-width="1.5"/>
+            <line x1="268" y1="35" x2="268" y2="265" stroke="#2a2a40" stroke-width="1.5"/>
+            <line x1="343" y1="35" x2="343" y2="265" stroke="#2a2a40" stroke-width="1.5"/>
+            <line x1="418" y1="35" x2="418" y2="265" stroke="#2a2a40" stroke-width="1.5"/>
+
+            <!-- Fret dot at fret 3 -->
+            <circle cx="305" cy="275" r="3" fill="#3a3a50"/>
+
+            <!-- Strings -->
+            <line x1="55" y1="50" x2="418" y2="50" stroke="#505065" stroke-width="1.2"/>
+            <line x1="55" y1="90" x2="418" y2="90" stroke="#505065" stroke-width="1.4"/>
+            <line x1="55" y1="130" x2="418" y2="130" stroke="#505065" stroke-width="1.6"/>
+            <line x1="55" y1="170" x2="418" y2="170" stroke="#505065" stroke-width="1.8"/>
+            <line x1="55" y1="210" x2="418" y2="210" stroke="#505065" stroke-width="2"/>
+            <line x1="55" y1="250" x2="418" y2="250" stroke="#505065" stroke-width="2.2"/>
+
+            <!-- C Major Scale Notes: C D E F G A B C -->
+            <!-- 6th string: E(0)=mi, F(1)=fa, G(3)=sol -->
+            <g class="fretboard-note" data-note="E">
+              <circle cx="80" cy="250" r="15" fill="#2a2a40" stroke="#10b981" stroke-width="2"/><text x="80" y="254" text-anchor="middle" fill="#10b981" font-size="10" font-weight="bold">E</text>
+            </g>
+            <g class="fretboard-note" data-note="F">
+              <circle cx="155" cy="250" r="15" fill="#2a2a40" stroke="#10b981" stroke-width="2"/><text x="155" y="254" text-anchor="middle" fill="#10b981" font-size="10" font-weight="bold">F</text>
+            </g>
+            <g class="fretboard-note" data-note="G">
+              <circle cx="305" cy="250" r="15" fill="#2a2a40" stroke="#10b981" stroke-width="2"/><text x="305" y="254" text-anchor="middle" fill="#10b981" font-size="10" font-weight="bold">G</text>
+            </g>
+
+            <!-- 5th string: A(0)=la, B(2)=si, C(3)=do -->
+            <g class="fretboard-note" data-note="A">
+              <circle cx="80" cy="210" r="15" fill="#2a2a40" stroke="#10b981" stroke-width="2"/><text x="80" y="214" text-anchor="middle" fill="#10b981" font-size="10" font-weight="bold">A</text>
+            </g>
+            <g class="fretboard-note" data-note="B">
+              <circle cx="230" cy="210" r="15" fill="#2a2a40" stroke="#10b981" stroke-width="2"/><text x="230" y="214" text-anchor="middle" fill="#10b981" font-size="10" font-weight="bold">B</text>
+            </g>
+            <g class="fretboard-note" data-note="C">
+              <circle cx="305" cy="210" r="15" fill="#10b981" opacity="0.9"/><text x="305" y="214" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">C</text>
+            </g>
+
+            <!-- 4th string: D(0)=re, E(2)=mi, F(3)=fa -->
+            <g class="fretboard-note" data-note="D">
+              <circle cx="80" cy="170" r="15" fill="#2a2a40" stroke="#10b981" stroke-width="2"/><text x="80" y="174" text-anchor="middle" fill="#10b981" font-size="10" font-weight="bold">D</text>
+            </g>
+            <g class="fretboard-note" data-note="E">
+              <circle cx="230" cy="170" r="15" fill="#2a2a40" stroke="#10b981" stroke-width="2"/><text x="230" y="174" text-anchor="middle" fill="#10b981" font-size="10" font-weight="bold">E</text>
+            </g>
+            <g class="fretboard-note" data-note="F">
+              <circle cx="305" cy="170" r="15" fill="#2a2a40" stroke="#10b981" stroke-width="2"/><text x="305" y="174" text-anchor="middle" fill="#10b981" font-size="10" font-weight="bold">F</text>
+            </g>
+
+            <!-- 3rd string: G(0)=sol, A(2)=la -->
+            <g class="fretboard-note" data-note="G">
+              <circle cx="80" cy="130" r="15" fill="#2a2a40" stroke="#10b981" stroke-width="2"/><text x="80" y="134" text-anchor="middle" fill="#10b981" font-size="10" font-weight="bold">G</text>
+            </g>
+            <g class="fretboard-note" data-note="A">
+              <circle cx="230" cy="130" r="15" fill="#2a2a40" stroke="#10b981" stroke-width="2"/><text x="230" y="134" text-anchor="middle" fill="#10b981" font-size="10" font-weight="bold">A</text>
+            </g>
+
+            <!-- 2nd string: B(0)=si, C(1)=do -->
+            <g class="fretboard-note" data-note="B">
+              <circle cx="80" cy="90" r="15" fill="#2a2a40" stroke="#10b981" stroke-width="2"/><text x="80" y="94" text-anchor="middle" fill="#10b981" font-size="10" font-weight="bold">B</text>
+            </g>
+            <g class="fretboard-note" data-note="C">
+              <circle cx="155" cy="90" r="15" fill="#10b981" opacity="0.9"/><text x="155" y="94" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">C</text>
+            </g>
+
+            <!-- 1st string: E(0)=mi, F(1)=fa, G(3)=sol -->
+            <g class="fretboard-note" data-note="E">
+              <circle cx="80" cy="50" r="15" fill="#2a2a40" stroke="#10b981" stroke-width="2"/><text x="80" y="54" text-anchor="middle" fill="#10b981" font-size="10" font-weight="bold">E</text>
+            </g>
+            <g class="fretboard-note" data-note="F">
+              <circle cx="155" cy="50" r="15" fill="#2a2a40" stroke="#10b981" stroke-width="2"/><text x="155" y="54" text-anchor="middle" fill="#10b981" font-size="10" font-weight="bold">F</text>
+            </g>
+            <g class="fretboard-note" data-note="G">
+              <circle cx="305" cy="50" r="15" fill="#2a2a40" stroke="#10b981" stroke-width="2"/><text x="305" y="54" text-anchor="middle" fill="#10b981" font-size="10" font-weight="bold">G</text>
+            </g>
+          </svg>
+          <div class="diagram-legend">
+            <div class="legend-item"><div class="legend-dot" style="background: #10b981;"></div> 루트(C) 음</div>
+            <div class="legend-item"><div class="legend-dot" style="background: #2a2a40; border: 2px solid #10b981;"></div> 스케일 구성음</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== Phase 2 ===== -->
+  <section id="phase2" class="animate-on-scroll">
+    <div class="phase-section">
+      <div class="phase-header">
+        <div class="phase-icon" style="background: rgba(139,92,246,0.15);">🔥</div>
+        <div>
+          <span class="section-label label-purple">Phase 2 · 2~3개월</span>
+          <h2>펜타토닉 & 블루스 — JAM의 시작</h2>
+          <div class="sub">백킹트랙에 맞춰 "그럴듯한" 솔로를 시작하기</div>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <strong>💡 핵심 TIP:</strong> 펜타토닉 스케일은 자유연주의 <strong>가장 빠른 지름길</strong>입니다. 5개 음만으로 놀라울 정도로 많은 것을 표현할 수 있습니다.
+      </div>
+
+      <!-- Scale Tabs -->
+      <div class="content-block">
+        <h3>
+          <span class="num" style="background: rgba(139,92,246,0.2); color: var(--accent-purple);">1</span>
+          스케일 다이어그램
+        </h3>
+
+        <div class="scale-tabs">
+          <button class="scale-tab active" data-target="pentatonic">A 마이너 펜타토닉</button>
+          <button class="scale-tab" data-target="blues">A 블루스 스케일</button>
+          <button class="scale-tab" data-target="major-penta">A 메이저 펜타토닉</button>
+        </div>
+
+        <!-- Pentatonic Scale -->
+        <div class="scale-panel active" id="panel-pentatonic">
+          <div class="diagram-container">
+            <div class="diagram-title">🎸 A 마이너 펜타토닉 — Box 1 (5프렛)</div>
+            <svg viewBox="0 0 380 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A 마이너 펜타토닉 Box 1">
+              <!-- Fret numbers -->
+              <text x="95" y="20" text-anchor="middle" fill="#6a6a80" font-size="12" font-family="monospace">5fr</text>
+              <text x="170" y="20" text-anchor="middle" fill="#6a6a80" font-size="12" font-family="monospace">6</text>
+              <text x="245" y="20" text-anchor="middle" fill="#6a6a80" font-size="12" font-family="monospace">7</text>
+              <text x="320" y="20" text-anchor="middle" fill="#6a6a80" font-size="12" font-family="monospace">8</text>
+
+              <!-- String labels -->
+              <text x="25" y="55" text-anchor="middle" fill="#a0a0b8" font-size="11">1(E)</text>
+              <text x="25" y="100" text-anchor="middle" fill="#a0a0b8" font-size="11">2(B)</text>
+              <text x="25" y="145" text-anchor="middle" fill="#a0a0b8" font-size="11">3(G)</text>
+              <text x="25" y="190" text-anchor="middle" fill="#a0a0b8" font-size="11">4(D)</text>
+              <text x="25" y="235" text-anchor="middle" fill="#a0a0b8" font-size="11">5(A)</text>
+              <text x="25" y="280" text-anchor="middle" fill="#a0a0b8" font-size="11">6(E)</text>
+
+              <!-- Fret bar (starting fret indicator) -->
+              <line x1="56" y1="35" x2="56" y2="290" stroke="#6a6a80" stroke-width="3"/>
+
+              <!-- Fret lines -->
+              <line x1="131" y1="35" x2="131" y2="290" stroke="#2a2a40" stroke-width="1.5"/>
+              <line x1="206" y1="35" x2="206" y2="290" stroke="#2a2a40" stroke-width="1.5"/>
+              <line x1="281" y1="35" x2="281" y2="290" stroke="#2a2a40" stroke-width="1.5"/>
+              <line x1="356" y1="35" x2="356" y2="290" stroke="#2a2a40" stroke-width="1.5"/>
+
+              <!-- Fret dot (7th fret) -->
+              <circle cx="245" cy="300" r="3" fill="#3a3a50"/>
+
+              <!-- Strings -->
+              <line x1="56" y1="50" x2="356" y2="50" stroke="#505065" stroke-width="1.2"/>
+              <line x1="56" y1="95" x2="356" y2="95" stroke="#505065" stroke-width="1.4"/>
+              <line x1="56" y1="140" x2="356" y2="140" stroke="#505065" stroke-width="1.6"/>
+              <line x1="56" y1="185" x2="356" y2="185" stroke="#505065" stroke-width="1.8"/>
+              <line x1="56" y1="230" x2="356" y2="230" stroke="#505065" stroke-width="2"/>
+              <line x1="56" y1="275" x2="356" y2="275" stroke="#505065" stroke-width="2.2"/>
+
+              <!-- Notes: A minor pentatonic (A C D E G) -->
+              <!-- 6th string: A(5)=Root, C(8) -->
+              <circle cx="95" cy="275" r="16" fill="#ec4899" opacity="0.9"/>
+              <text x="95" y="280" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">A</text>
+              <text x="95" y="268" text-anchor="middle" fill="#fff" font-size="7">R</text>
+
+              <circle cx="320" cy="275" r="16" fill="#8b5cf6" opacity="0.85"/>
+              <text x="320" y="280" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">C</text>
+              <text x="320" y="268" text-anchor="middle" fill="#fff" font-size="7">♭3</text>
+
+              <!-- 5th string: D(5), E(7) -->
+              <circle cx="95" cy="230" r="16" fill="#8b5cf6" opacity="0.85"/>
+              <text x="95" y="235" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">D</text>
+              <text x="95" y="223" text-anchor="middle" fill="#fff" font-size="7">4</text>
+
+              <circle cx="245" cy="230" r="16" fill="#8b5cf6" opacity="0.85"/>
+              <text x="245" y="235" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">E</text>
+              <text x="245" y="223" text-anchor="middle" fill="#fff" font-size="7">5</text>
+
+              <!-- 4th string: G(5), A(7)=Root -->
+              <circle cx="95" cy="185" r="16" fill="#8b5cf6" opacity="0.85"/>
+              <text x="95" y="190" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">G</text>
+              <text x="95" y="178" text-anchor="middle" fill="#fff" font-size="7">♭7</text>
+
+              <circle cx="245" cy="185" r="16" fill="#ec4899" opacity="0.9"/>
+              <text x="245" y="190" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">A</text>
+              <text x="245" y="178" text-anchor="middle" fill="#fff" font-size="7">R</text>
+
+              <!-- 3rd string: C(5), D(7) -->
+              <circle cx="95" cy="140" r="16" fill="#8b5cf6" opacity="0.85"/>
+              <text x="95" y="145" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">C</text>
+              <text x="95" y="133" text-anchor="middle" fill="#fff" font-size="7">♭3</text>
+
+              <circle cx="245" cy="140" r="16" fill="#8b5cf6" opacity="0.85"/>
+              <text x="245" y="145" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">D</text>
+              <text x="245" y="133" text-anchor="middle" fill="#fff" font-size="7">4</text>
+
+              <!-- 2nd string: E(5), G(8) -->
+              <circle cx="95" cy="95" r="16" fill="#8b5cf6" opacity="0.85"/>
+              <text x="95" y="100" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">E</text>
+              <text x="95" y="88" text-anchor="middle" fill="#fff" font-size="7">5</text>
+
+              <circle cx="320" cy="95" r="16" fill="#8b5cf6" opacity="0.85"/>
+              <text x="320" y="100" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">G</text>
+              <text x="320" y="88" text-anchor="middle" fill="#fff" font-size="7">♭7</text>
+
+              <!-- 1st string: A(5)=Root, C(8) -->
+              <circle cx="95" cy="50" r="16" fill="#ec4899" opacity="0.9"/>
+              <text x="95" y="55" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">A</text>
+              <text x="95" y="43" text-anchor="middle" fill="#fff" font-size="7">R</text>
+
+              <circle cx="320" cy="50" r="16" fill="#8b5cf6" opacity="0.85"/>
+              <text x="320" y="55" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">C</text>
+              <text x="320" y="43" text-anchor="middle" fill="#fff" font-size="7">♭3</text>
+            </svg>
+            <div class="diagram-legend">
+              <div class="legend-item"><div class="legend-dot" style="background: #ec4899;"></div> 루트(A)</div>
+              <div class="legend-item"><div class="legend-dot" style="background: #8b5cf6;"></div> 스케일 음 (♭3, 4, 5, ♭7)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blues Scale -->
+        <div class="scale-panel" id="panel-blues">
+          <div class="diagram-container">
+            <div class="diagram-title">🎷 A 블루스 스케일 — 펜타토닉 + ♭5(블루노트)</div>
+            <svg viewBox="0 0 380 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A 블루스 스케일">
+              <!-- Fret numbers -->
+              <text x="95" y="20" text-anchor="middle" fill="#6a6a80" font-size="12" font-family="monospace">5fr</text>
+              <text x="170" y="20" text-anchor="middle" fill="#6a6a80" font-size="12" font-family="monospace">6</text>
+              <text x="245" y="20" text-anchor="middle" fill="#6a6a80" font-size="12" font-family="monospace">7</text>
+              <text x="320" y="20" text-anchor="middle" fill="#6a6a80" font-size="12" font-family="monospace">8</text>
+
+              <!-- String labels -->
+              <text x="25" y="55" text-anchor="middle" fill="#a0a0b8" font-size="11">1(E)</text>
+              <text x="25" y="100" text-anchor="middle" fill="#a0a0b8" font-size="11">2(B)</text>
+              <text x="25" y="145" text-anchor="middle" fill="#a0a0b8" font-size="11">3(G)</text>
+              <text x="25" y="190" text-anchor="middle" fill="#a0a0b8" font-size="11">4(D)</text>
+              <text x="25" y="235" text-anchor="middle" fill="#a0a0b8" font-size="11">5(A)</text>
+              <text x="25" y="280" text-anchor="middle" fill="#a0a0b8" font-size="11">6(E)</text>
+
+              <!-- Fret bar -->
+              <line x1="56" y1="35" x2="56" y2="290" stroke="#6a6a80" stroke-width="3"/>
+              <!-- Fret lines -->
+              <line x1="131" y1="35" x2="131" y2="290" stroke="#2a2a40" stroke-width="1.5"/>
+              <line x1="206" y1="35" x2="206" y2="290" stroke="#2a2a40" stroke-width="1.5"/>
+              <line x1="281" y1="35" x2="281" y2="290" stroke="#2a2a40" stroke-width="1.5"/>
+              <line x1="356" y1="35" x2="356" y2="290" stroke="#2a2a40" stroke-width="1.5"/>
+              <circle cx="245" cy="300" r="3" fill="#3a3a50"/>
+
+              <!-- Strings -->
+              <line x1="56" y1="50" x2="356" y2="50" stroke="#505065" stroke-width="1.2"/>
+              <line x1="56" y1="95" x2="356" y2="95" stroke="#505065" stroke-width="1.4"/>
+              <line x1="56" y1="140" x2="356" y2="140" stroke="#505065" stroke-width="1.6"/>
+              <line x1="56" y1="185" x2="356" y2="185" stroke="#505065" stroke-width="1.8"/>
+              <line x1="56" y1="230" x2="356" y2="230" stroke="#505065" stroke-width="2"/>
+              <line x1="56" y1="275" x2="356" y2="275" stroke="#505065" stroke-width="2.2"/>
+
+              <!-- Same pentatonic notes + blue notes (E♭) -->
+              <!-- 6th: A(5), C(8) -->
+              <circle cx="95" cy="275" r="16" fill="#ec4899" opacity="0.9"/>
+              <text x="95" y="280" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">A</text>
+
+              <circle cx="320" cy="275" r="16" fill="#8b5cf6" opacity="0.85"/>
+              <text x="320" y="280" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">C</text>
+
+              <!-- 5th: D(5), E♭(6)=BLUE NOTE, E(7) -->
+              <circle cx="95" cy="230" r="16" fill="#8b5cf6" opacity="0.85"/>
+              <text x="95" y="235" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">D</text>
+
+              <circle cx="170" cy="230" r="16" fill="#06b6d4" opacity="0.9"/>
+              <text x="170" y="235" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">E♭</text>
+              <text x="170" y="223" text-anchor="middle" fill="#fff" font-size="7">♭5</text>
+
+              <circle cx="245" cy="230" r="16" fill="#8b5cf6" opacity="0.85"/>
+              <text x="245" y="235" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">E</text>
+
+              <!-- 4th: G(5), A(7) -->
+              <circle cx="95" cy="185" r="16" fill="#8b5cf6" opacity="0.85"/>
+              <text x="95" y="190" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">G</text>
+
+              <circle cx="245" cy="185" r="16" fill="#ec4899" opacity="0.9"/>
+              <text x="245" y="190" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">A</text>
+
+              <!-- 3rd: C(5), D(7), E♭(8)=BLUE NOTE -->
+              <circle cx="95" cy="140" r="16" fill="#8b5cf6" opacity="0.85"/>
+              <text x="95" y="145" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">C</text>
+
+              <circle cx="245" cy="140" r="16" fill="#8b5cf6" opacity="0.85"/>
+              <text x="245" y="145" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">D</text>
+
+              <circle cx="320" cy="140" r="16" fill="#06b6d4" opacity="0.9"/>
+              <text x="320" y="145" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">E♭</text>
+              <text x="320" y="133" text-anchor="middle" fill="#fff" font-size="7">♭5</text>
+
+              <!-- 2nd: E(5), G(8) -->
+              <circle cx="95" cy="95" r="16" fill="#8b5cf6" opacity="0.85"/>
+              <text x="95" y="100" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">E</text>
+
+              <circle cx="320" cy="95" r="16" fill="#8b5cf6" opacity="0.85"/>
+              <text x="320" y="100" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">G</text>
+
+              <!-- 1st: A(5), C(8) -->
+              <circle cx="95" cy="50" r="16" fill="#ec4899" opacity="0.9"/>
+              <text x="95" y="55" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">A</text>
+
+              <circle cx="320" cy="50" r="16" fill="#8b5cf6" opacity="0.85"/>
+              <text x="320" y="55" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">C</text>
+            </svg>
+            <div class="diagram-legend">
+              <div class="legend-item"><div class="legend-dot" style="background: #ec4899;"></div> 루트(A)</div>
+              <div class="legend-item"><div class="legend-dot" style="background: #8b5cf6;"></div> 펜타토닉 음</div>
+              <div class="legend-item"><div class="legend-dot" style="background: #06b6d4;"></div> 블루노트(♭5)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Major Pentatonic -->
+        <div class="scale-panel" id="panel-major-penta">
+          <div class="diagram-container">
+            <div class="diagram-title">☀️ A 메이저 펜타토닉 — Box 1 (2프렛 시작)</div>
+            <svg viewBox="0 0 380 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A 메이저 펜타토닉">
+              <!-- Fret numbers -->
+              <text x="95" y="20" text-anchor="middle" fill="#6a6a80" font-size="12" font-family="monospace">2fr</text>
+              <text x="170" y="20" text-anchor="middle" fill="#6a6a80" font-size="12" font-family="monospace">3</text>
+              <text x="245" y="20" text-anchor="middle" fill="#6a6a80" font-size="12" font-family="monospace">4</text>
+              <text x="320" y="20" text-anchor="middle" fill="#6a6a80" font-size="12" font-family="monospace">5</text>
+
+              <!-- String labels -->
+              <text x="25" y="55" text-anchor="middle" fill="#a0a0b8" font-size="11">1(E)</text>
+              <text x="25" y="100" text-anchor="middle" fill="#a0a0b8" font-size="11">2(B)</text>
+              <text x="25" y="145" text-anchor="middle" fill="#a0a0b8" font-size="11">3(G)</text>
+              <text x="25" y="190" text-anchor="middle" fill="#a0a0b8" font-size="11">4(D)</text>
+              <text x="25" y="235" text-anchor="middle" fill="#a0a0b8" font-size="11">5(A)</text>
+              <text x="25" y="280" text-anchor="middle" fill="#a0a0b8" font-size="11">6(E)</text>
+
+              <line x1="56" y1="35" x2="56" y2="290" stroke="#6a6a80" stroke-width="3"/>
+              <line x1="131" y1="35" x2="131" y2="290" stroke="#2a2a40" stroke-width="1.5"/>
+              <line x1="206" y1="35" x2="206" y2="290" stroke="#2a2a40" stroke-width="1.5"/>
+              <line x1="281" y1="35" x2="281" y2="290" stroke="#2a2a40" stroke-width="1.5"/>
+              <line x1="356" y1="35" x2="356" y2="290" stroke="#2a2a40" stroke-width="1.5"/>
+              <circle cx="170" cy="300" r="3" fill="#3a3a50"/>
+
+              <line x1="56" y1="50" x2="356" y2="50" stroke="#505065" stroke-width="1.2"/>
+              <line x1="56" y1="95" x2="356" y2="95" stroke="#505065" stroke-width="1.4"/>
+              <line x1="56" y1="140" x2="356" y2="140" stroke="#505065" stroke-width="1.6"/>
+              <line x1="56" y1="185" x2="356" y2="185" stroke="#505065" stroke-width="1.8"/>
+              <line x1="56" y1="230" x2="356" y2="230" stroke="#505065" stroke-width="2"/>
+              <line x1="56" y1="275" x2="356" y2="275" stroke="#505065" stroke-width="2.2"/>
+
+              <!-- A Major Pentatonic (F# Minor Pentatonic Shape: Fret 2 to 5) -->
+              <!-- 6th string: F#(2), A(5) Root -->
+              <circle cx="95" cy="275" r="16" fill="#f59e0b" opacity="0.85"/>
+              <text x="95" y="280" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">F#</text>
+              <text x="95" y="268" text-anchor="middle" fill="#fff" font-size="7">6</text>
+
+              <circle cx="320" cy="275" r="16" fill="#ec4899" opacity="0.9"/>
+              <text x="320" y="280" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">A</text>
+              <text x="320" y="268" text-anchor="middle" fill="#fff" font-size="7">R</text>
+
+              <!-- 5th: B(2)=95, C#(4)=245 -->
+              <circle cx="95" cy="230" r="16" fill="#f59e0b" opacity="0.85"/>
+              <text x="95" y="235" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">B</text>
+              <text x="95" y="223" text-anchor="middle" fill="#fff" font-size="7">2</text>
+
+              <circle cx="245" cy="230" r="16" fill="#f59e0b" opacity="0.85"/>
+              <text x="245" y="235" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">C#</text>
+              <text x="245" y="223" text-anchor="middle" fill="#fff" font-size="7">3</text>
+
+              <!-- 4th: E(2)=95, F#(4)=245 -->
+              <circle cx="95" cy="185" r="16" fill="#f59e0b" opacity="0.85"/>
+              <text x="95" y="190" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">E</text>
+              <text x="95" y="178" text-anchor="middle" fill="#fff" font-size="7">5</text>
+
+              <circle cx="245" cy="185" r="16" fill="#f59e0b" opacity="0.85"/>
+              <text x="245" y="190" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">F#</text>
+              <text x="245" y="178" text-anchor="middle" fill="#fff" font-size="7">6</text>
+
+              <!-- 3rd: A(2)=95, B(4)=245 -->
+              <circle cx="95" cy="140" r="16" fill="#ec4899" opacity="0.9"/>
+              <text x="95" y="145" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">A</text>
+              <text x="95" y="133" text-anchor="middle" fill="#fff" font-size="7">R</text>
+
+              <circle cx="245" cy="140" r="16" fill="#f59e0b" opacity="0.85"/>
+              <text x="245" y="145" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">B</text>
+              <text x="245" y="133" text-anchor="middle" fill="#fff" font-size="7">2</text>
+
+              <!-- 2nd: C#(2)=95, E(5)=320 -->
+              <circle cx="95" cy="95" r="16" fill="#f59e0b" opacity="0.85"/>
+              <text x="95" y="100" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">C#</text>
+              <text x="95" y="88" text-anchor="middle" fill="#fff" font-size="7">3</text>
+
+              <circle cx="320" cy="95" r="16" fill="#f59e0b" opacity="0.85"/>
+              <text x="320" y="100" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">E</text>
+              <text x="320" y="88" text-anchor="middle" fill="#fff" font-size="7">5</text>
+
+              <!-- 1st: F#(2)=95, A(5)=320 -->
+              <circle cx="95" cy="50" r="16" fill="#f59e0b" opacity="0.85"/>
+              <text x="95" y="55" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">F#</text>
+              <text x="95" y="43" text-anchor="middle" fill="#fff" font-size="7">6</text>
+
+              <circle cx="320" cy="50" r="16" fill="#ec4899" opacity="0.9"/>
+              <text x="320" y="55" text-anchor="middle" fill="#fff" font-size="10" font-weight="bold">A</text>
+              <text x="320" y="43" text-anchor="middle" fill="#fff" font-size="7">R</text>
+            </svg>
+            <div class="diagram-legend">
+              <div class="legend-item"><div class="legend-dot" style="background: #ec4899;"></div> 루트(A)</div>
+              <div class="legend-item"><div class="legend-dot" style="background: #f59e0b;"></div> 스케일 음 (2, 3, 5, 6)</div>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.8rem;">
+              💡 마이너 펜타토닉의 "밝은 버전" — 같은 구성음이지만 루트가 다릅니다 (A 메이저 펜타 = F# 마이너 펜타)
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Practice tips -->
+      <div class="content-block">
+        <h3>
+          <span class="num" style="background: rgba(139,92,246,0.2); color: var(--accent-purple);">2</span>
+          실전 연습 방법
+        </h3>
+        <ul>
+          <li>좋아하는 곡의 솔로에서 <strong>펜타토닉 패턴</strong>을 찾아보세요</li>
+          <li>YouTube에서 "A minor backing track" 검색해서 매일 JAM</li>
+          <li>12마디 블루스 진행(I-IV-V) 위에서 블루스 스케일 연습</li>
+          <li>처음엔 <strong>2~3개 음</strong>만으로 리듬과 느낌에 집중하세요</li>
+          <li><strong>벤딩, 슬라이드, 비브라토</strong>를 여기서 집중 연습</li>
+        </ul>
+
+        <div class="warning-box">
+          <strong>⚡ 주의:</strong> 빠르게 많이 치려 하지 마세요. <strong>적은 음으로 노래하듯이</strong> 치는 것이 훨씬 음악적입니다. 좋은 솔로는 음의 개수가 아니라 타이밍과 표현력에서 나옵니다.
+        </div>
+      </div>
+
+      <!-- 12-bar blues -->
+      <div class="content-block">
+        <h3>
+          <span class="num" style="background: rgba(139,92,246,0.2); color: var(--accent-purple);">3</span>
+          12마디 블루스 진행 (기본)
+        </h3>
+        <div class="diagram-container">
+          <div class="diagram-title">🎵 12-Bar Blues in A</div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; max-width: 500px; margin: 0 auto;">
+            <div style="background: rgba(236,72,153,0.15); border: 1px solid rgba(236,72,153,0.3); border-radius: 8px; padding: 12px; text-align: center;">
+              <div style="font-size: 0.7rem; color: var(--text-muted);">1</div>
+              <div style="font-weight: 700; font-size: 1.1rem;">A7</div>
+              <div style="font-size: 0.7rem; color: var(--accent-pink);">I</div>
+            </div>
+            <div style="background: rgba(236,72,153,0.15); border: 1px solid rgba(236,72,153,0.3); border-radius: 8px; padding: 12px; text-align: center;">
+              <div style="font-size: 0.7rem; color: var(--text-muted);">2</div>
+              <div style="font-weight: 700; font-size: 1.1rem;">A7</div>
+              <div style="font-size: 0.7rem; color: var(--accent-pink);">I</div>
+            </div>
+            <div style="background: rgba(236,72,153,0.15); border: 1px solid rgba(236,72,153,0.3); border-radius: 8px; padding: 12px; text-align: center;">
+              <div style="font-size: 0.7rem; color: var(--text-muted);">3</div>
+              <div style="font-weight: 700; font-size: 1.1rem;">A7</div>
+              <div style="font-size: 0.7rem; color: var(--accent-pink);">I</div>
+            </div>
+            <div style="background: rgba(236,72,153,0.15); border: 1px solid rgba(236,72,153,0.3); border-radius: 8px; padding: 12px; text-align: center;">
+              <div style="font-size: 0.7rem; color: var(--text-muted);">4</div>
+              <div style="font-weight: 700; font-size: 1.1rem;">A7</div>
+              <div style="font-size: 0.7rem; color: var(--accent-pink);">I</div>
+            </div>
+            <div style="background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); border-radius: 8px; padding: 12px; text-align: center;">
+              <div style="font-size: 0.7rem; color: var(--text-muted);">5</div>
+              <div style="font-weight: 700; font-size: 1.1rem;">D7</div>
+              <div style="font-size: 0.7rem; color: var(--accent-purple);">IV</div>
+            </div>
+            <div style="background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); border-radius: 8px; padding: 12px; text-align: center;">
+              <div style="font-size: 0.7rem; color: var(--text-muted);">6</div>
+              <div style="font-weight: 700; font-size: 1.1rem;">D7</div>
+              <div style="font-size: 0.7rem; color: var(--accent-purple);">IV</div>
+            </div>
+            <div style="background: rgba(236,72,153,0.15); border: 1px solid rgba(236,72,153,0.3); border-radius: 8px; padding: 12px; text-align: center;">
+              <div style="font-size: 0.7rem; color: var(--text-muted);">7</div>
+              <div style="font-weight: 700; font-size: 1.1rem;">A7</div>
+              <div style="font-size: 0.7rem; color: var(--accent-pink);">I</div>
+            </div>
+            <div style="background: rgba(236,72,153,0.15); border: 1px solid rgba(236,72,153,0.3); border-radius: 8px; padding: 12px; text-align: center;">
+              <div style="font-size: 0.7rem; color: var(--text-muted);">8</div>
+              <div style="font-weight: 700; font-size: 1.1rem;">A7</div>
+              <div style="font-size: 0.7rem; color: var(--accent-pink);">I</div>
+            </div>
+            <div style="background: rgba(74,158,255,0.15); border: 1px solid rgba(74,158,255,0.3); border-radius: 8px; padding: 12px; text-align: center;">
+              <div style="font-size: 0.7rem; color: var(--text-muted);">9</div>
+              <div style="font-weight: 700; font-size: 1.1rem;">E7</div>
+              <div style="font-size: 0.7rem; color: var(--accent-blue);">V</div>
+            </div>
+            <div style="background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); border-radius: 8px; padding: 12px; text-align: center;">
+              <div style="font-size: 0.7rem; color: var(--text-muted);">10</div>
+              <div style="font-weight: 700; font-size: 1.1rem;">D7</div>
+              <div style="font-size: 0.7rem; color: var(--accent-purple);">IV</div>
+            </div>
+            <div style="background: rgba(236,72,153,0.15); border: 1px solid rgba(236,72,153,0.3); border-radius: 8px; padding: 12px; text-align: center;">
+              <div style="font-size: 0.7rem; color: var(--text-muted);">11</div>
+              <div style="font-weight: 700; font-size: 1.1rem;">A7</div>
+              <div style="font-size: 0.7rem; color: var(--accent-pink);">I</div>
+            </div>
+            <div style="background: rgba(74,158,255,0.15); border: 1px solid rgba(74,158,255,0.3); border-radius: 8px; padding: 12px; text-align: center;">
+              <div style="font-size: 0.7rem; color: var(--text-muted);">12</div>
+              <div style="font-weight: 700; font-size: 1.1rem;">E7</div>
+              <div style="font-size: 0.7rem; color: var(--accent-blue);">V</div>
+            </div>
+          </div>
+          <p style="text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem;">
+            이 진행 위에서 A 마이너 펜타토닉 또는 A 블루스 스케일로 연주할 수 있습니다
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Phase 3 ===== -->
+  <section id="phase3" class="animate-on-scroll">
+    <div class="phase-section">
+      <div class="phase-header">
+        <div class="phase-icon" style="background: rgba(16,185,129,0.15);">🧩</div>
+        <div>
+          <span class="section-label label-green">Phase 3 · 3~4개월</span>
+          <h2>코드 톤 & 코드 이해</h2>
+          <div class="sub">"왜 이 코드 위에서 이 음이 좋게 들리는지" 이해하기</div>
+        </div>
+      </div>
+
+      <!-- 3-1: Triads -->
+      <div class="content-block">
+        <h3>
+          <span class="num" style="background: rgba(16,185,129,0.2); color: var(--accent-green);">1</span>
+          트라이어드 (3화음)
+        </h3>
+        <ul>
+          <li><strong>메이저 트라이어드:</strong> 루트 + 장3도 + 완전5도 (밝은 소리)</li>
+          <li><strong>마이너 트라이어드:</strong> 루트 + 단3도 + 완전5도 (어두운 소리)</li>
+          <li><strong>CAGED 시스템</strong>으로 지판 위 코드 모양을 연결하세요</li>
+        </ul>
+
+        <div class="diagram-container">
+          <div class="diagram-title">🔗 트라이어드 구성 비교</div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+            <div style="background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); border-radius: 10px; padding: 1.2rem; text-align: center;">
+              <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.8rem; color: var(--accent-green);">메이저 트라이어드</div>
+              <div style="display: flex; justify-content: center; gap: 0.5rem; align-items: center;">
+                <div style="background: rgba(236,72,153,0.2); border-radius: 8px; padding: 0.5rem 0.8rem;">
+                  <div style="font-weight: 700;">R</div>
+                  <div style="font-size: 0.7rem; color: var(--text-muted);">루트</div>
+                </div>
+                <span style="color: var(--text-muted);">+</span>
+                <div style="background: rgba(16,185,129,0.2); border-radius: 8px; padding: 0.5rem 0.8rem;">
+                  <div style="font-weight: 700;">3</div>
+                  <div style="font-size: 0.7rem; color: var(--text-muted);">장3도</div>
+                </div>
+                <span style="color: var(--text-muted);">+</span>
+                <div style="background: rgba(74,158,255,0.2); border-radius: 8px; padding: 0.5rem 0.8rem;">
+                  <div style="font-weight: 700;">5</div>
+                  <div style="font-size: 0.7rem; color: var(--text-muted);">완전5도</div>
+                </div>
+              </div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.6rem;">예: C = C + E + G</div>
+            </div>
+            <div style="background: rgba(139,92,246,0.08); border: 1px solid rgba(139,92,246,0.2); border-radius: 10px; padding: 1.2rem; text-align: center;">
+              <div style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.8rem; color: var(--accent-purple);">마이너 트라이어드</div>
+              <div style="display: flex; justify-content: center; gap: 0.5rem; align-items: center;">
+                <div style="background: rgba(236,72,153,0.2); border-radius: 8px; padding: 0.5rem 0.8rem;">
+                  <div style="font-weight: 700;">R</div>
+                  <div style="font-size: 0.7rem; color: var(--text-muted);">루트</div>
+                </div>
+                <span style="color: var(--text-muted);">+</span>
+                <div style="background: rgba(139,92,246,0.2); border-radius: 8px; padding: 0.5rem 0.8rem;">
+                  <div style="font-weight: 700;">♭3</div>
+                  <div style="font-size: 0.7rem; color: var(--text-muted);">단3도</div>
+                </div>
+                <span style="color: var(--text-muted);">+</span>
+                <div style="background: rgba(74,158,255,0.2); border-radius: 8px; padding: 0.5rem 0.8rem;">
+                  <div style="font-weight: 700;">5</div>
+                  <div style="font-size: 0.7rem; color: var(--text-muted);">완전5도</div>
+                </div>
+              </div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.6rem;">예: Am = A + C + E</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3-2: Chord Tone Approach -->
+      <div class="content-block">
+        <h3>
+          <span class="num" style="background: rgba(16,185,129,0.2); color: var(--accent-green);">2</span>
+          코드 톤 어프로치
+        </h3>
+        <ul>
+          <li>코드 진행 위에서 <strong>각 코드의 구성음(코드 톤)</strong>을 노려서 치는 연습</li>
+          <li>예: Am → Dm → G → C 진행에서 각 코드의 1, 3, 5도를 연결</li>
+          <li>이것만 해도 <strong>"아무 음이나 치는 느낌"에서 벗어남</strong></li>
+        </ul>
+
+        <div class="tip-box">
+          <strong>💡 연습법:</strong> 먼저 코드 진행을 틀어놓고, 각 코드가 바뀔 때마다 해당 코드의 <strong>루트 음만</strong> 치세요. 그 다음엔 루트 + 3도, 그 다음엔 루트 + 3도 + 5도... 이렇게 점진적으로 늘려가세요.
+        </div>
+      </div>
+
+      <!-- 3-3: Diatonic Chords -->
+      <div class="content-block">
+        <h3>
+          <span class="num" style="background: rgba(16,185,129,0.2); color: var(--accent-green);">3</span>
+          다이어토닉 코드
+        </h3>
+        <ul>
+          <li>한 키 안에서 만들어지는 <strong>7개 코드</strong></li>
+          <li>곡의 코드 진행을 <strong>번호(로마 숫자)</strong>로 이해하기 시작</li>
+          <li>카피하던 곡들의 코드 진행을 다이어토닉으로 분석해보세요</li>
+        </ul>
+
+        <div class="diagram-container">
+          <div class="diagram-title">🎹 C 메이저 키의 다이어토닉 코드</div>
+          <div class="chord-flow">
+            <div class="chord-item" style="border-color: rgba(74,158,255,0.4);">
+              <div class="chord-degree" style="color: var(--accent-blue);">Ⅰ</div>
+              <div class="chord-name">C</div>
+              <div class="chord-quality">Major</div>
+            </div>
+            <span class="chord-arrow">→</span>
+            <div class="chord-item">
+              <div class="chord-degree">ⅱ</div>
+              <div class="chord-name">Dm</div>
+              <div class="chord-quality">minor</div>
+            </div>
+            <span class="chord-arrow">→</span>
+            <div class="chord-item">
+              <div class="chord-degree">ⅲ</div>
+              <div class="chord-name">Em</div>
+              <div class="chord-quality">minor</div>
+            </div>
+            <span class="chord-arrow">→</span>
+            <div class="chord-item" style="border-color: rgba(139,92,246,0.4);">
+              <div class="chord-degree" style="color: var(--accent-purple);">Ⅳ</div>
+              <div class="chord-name">F</div>
+              <div class="chord-quality">Major</div>
+            </div>
+            <span class="chord-arrow">→</span>
+            <div class="chord-item" style="border-color: rgba(16,185,129,0.4);">
+              <div class="chord-degree" style="color: var(--accent-green);">Ⅴ</div>
+              <div class="chord-name">G</div>
+              <div class="chord-quality">Major</div>
+            </div>
+            <span class="chord-arrow">→</span>
+            <div class="chord-item" style="border-color: rgba(236,72,153,0.4);">
+              <div class="chord-degree" style="color: var(--accent-pink);">ⅵ</div>
+              <div class="chord-name">Am</div>
+              <div class="chord-quality">minor</div>
+            </div>
+            <span class="chord-arrow">→</span>
+            <div class="chord-item">
+              <div class="chord-degree">ⅶ°</div>
+              <div class="chord-name">Bdim</div>
+              <div class="chord-quality">dim</div>
+            </div>
+          </div>
+          <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.8rem; line-height: 1.6;">
+            🔑 <strong>주요 진행 패턴:</strong><br>
+            • <strong>Ⅰ - Ⅴ - ⅵ - Ⅳ</strong> (C - G - Am - F) → 수많은 팝송의 기본<br>
+            • <strong>ⅱ - Ⅴ - Ⅰ</strong> (Dm - G - C) → 재즈/발라드의 기본<br>
+            • <strong>Ⅰ - ⅵ - Ⅳ - Ⅴ</strong> (C - Am - F - G) → 50년대 진행
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Phase 4 ===== -->
+  <section id="phase4" class="animate-on-scroll">
+    <div class="phase-section">
+      <div class="phase-header">
+        <div class="phase-icon" style="background: rgba(245,158,11,0.15);">🌈</div>
+        <div>
+          <span class="section-label label-orange">Phase 4 · 6개월~</span>
+          <h2>모드 & 확장</h2>
+          <div class="sub">더 다양한 색깔의 사운드 만들기</div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <h3>
+          <span class="num" style="background: rgba(245,158,11,0.2); color: var(--accent-orange);">1</span>
+          모드 (Modes)
+        </h3>
+        <ul>
+          <li><strong>아이오니안 (Ionian)</strong> — 메이저 스케일 그 자체, 밝고 안정적</li>
+          <li><strong>도리안 (Dorian)</strong> — 마이너 펜타 + 장6도 + 단2도. 마이너인데 밝은 느낌</li>
+          <li><strong>믹솔리디안 (Mixolydian)</strong> — 메이저인데 단7도. 블루지/록 느낌</li>
+        </ul>
+
+        <div class="diagram-container">
+          <div class="diagram-title">🎨 모드별 캐릭터 비교</div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem;">
+            <div style="background: linear-gradient(135deg, rgba(74,158,255,0.1), rgba(74,158,255,0.05)); border: 1px solid rgba(74,158,255,0.2); border-radius: 10px; padding: 1.2rem;">
+              <div style="font-weight: 700; color: var(--accent-blue); margin-bottom: 0.3rem;">아이오니안</div>
+              <div style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.5rem;">1 2 3 4 5 6 7</div>
+              <div style="font-size: 0.85rem;">☀️ 밝고 안정적</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.3rem;">팝, 컨트리</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(139,92,246,0.05)); border: 1px solid rgba(139,92,246,0.2); border-radius: 10px; padding: 1.2rem;">
+              <div style="font-weight: 700; color: var(--accent-purple); margin-bottom: 0.3rem;">도리안</div>
+              <div style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.5rem;">1 2 ♭3 4 5 <span style="color:#f59e0b;">6</span> ♭7</div>
+              <div style="font-size: 0.85rem;">🌙 마이너인데 밝은</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.3rem;">펑크, 재즈, 산타나</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(245,158,11,0.05)); border: 1px solid rgba(245,158,11,0.2); border-radius: 10px; padding: 1.2rem;">
+              <div style="font-weight: 700; color: var(--accent-orange); margin-bottom: 0.3rem;">믹솔리디안</div>
+              <div style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.5rem;">1 2 3 4 5 6 <span style="color:#ef4444;">♭7</span></div>
+              <div style="font-size: 0.85rem;">🔥 메이저인데 블루지</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.3rem;">블루스록, AC/DC</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <h3>
+          <span class="num" style="background: rgba(245,158,11,0.2); color: var(--accent-orange);">2</span>
+          7th 코드 & 확장 코드
+        </h3>
+        <ul>
+          <li>7th, 9th 코드 보이싱으로 사운드 풍성하게</li>
+          <li>코드 톤 어프로치를 7th까지 확장</li>
+        </ul>
+      </div>
+
+      <div class="content-block">
+        <h3>
+          <span class="num" style="background: rgba(245,158,11,0.2); color: var(--accent-orange);">3</span>
+          키 이동 (Transposing)
+        </h3>
+        <ul>
+          <li>같은 프레이즈/패턴을 12키 모두에서 치는 연습</li>
+          <li><strong>"모양"으로 기억</strong>하면 기타에서는 의외로 쉽습니다</li>
+          <li>스케일 박스를 다른 프렛으로 옮기기만 하면 키가 바뀝니다</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Daily Routine ===== -->
+  <section id="routine" class="animate-on-scroll">
+    <span class="section-label label-cyan">⏰ 연습 루틴</span>
+    <h2 class="section-title">매일 연습 루틴</h2>
+    <p class="section-desc">하루 30~60분 기준. 시간이 없는 날에는 백킹트랙 JAM 10분이라도 하세요!</p>
+
+    <table class="routine-table">
+      <thead>
+        <tr>
+          <th>시간</th>
+          <th>내용</th>
+          <th>설명</th>
+          <th>중요도</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="time-badge">5분</span></td>
+          <td><strong>워밍업</strong></td>
+          <td>크로매틱/핑거링 운동, 메트로놈 필수</td>
+          <td><span class="importance-badge importance-med">기본</span></td>
+        </tr>
+        <tr>
+          <td><span class="time-badge">10분</span></td>
+          <td><strong>이론/스케일 연습</strong></td>
+          <td>현재 Phase에 해당하는 스케일 or 코드 연습</td>
+          <td><span class="importance-badge importance-med">중요</span></td>
+        </tr>
+        <tr>
+          <td><span class="time-badge">10분</span></td>
+          <td><strong>🔥 백킹트랙 JAM</strong></td>
+          <td>배운 것을 바로 적용! 가장 중요한 시간</td>
+          <td><span class="importance-badge importance-high">핵심!</span></td>
+        </tr>
+        <tr>
+          <td><span class="time-badge">10분</span></td>
+          <td><strong>곡 카피</strong></td>
+          <td>TAB + 귀 카피 병행, 카피한 곡에서 패턴 분석</td>
+          <td><span class="importance-badge importance-med">중요</span></td>
+        </tr>
+        <tr>
+          <td><span class="time-badge">5분</span></td>
+          <td><strong>귀 훈련</strong></td>
+          <td>Functional Ear Trainer 앱으로 인터벌 훈련</td>
+          <td><span class="importance-badge importance-med">기본</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===== Resources ===== -->
+  <section id="resources" class="animate-on-scroll">
+    <span class="section-label label-pink">📚 추천 자료</span>
+    <h2 class="section-title">추천 자료</h2>
+    <p class="section-desc">학습에 도움이 되는 YouTube 채널과 도구들</p>
+
+    <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">🎬 YouTube 채널</h3>
+    <div class="resource-grid" style="margin-bottom: 2.5rem;">
+      <div class="resource-card">
+        <span class="tag" style="background: rgba(239,68,68,0.12); color: var(--accent-red);">YouTube</span>
+        <h4>Signals Music Studio</h4>
+        <p>이론을 기타에 바로 적용하는 방식. 시각적 설명이 탁월합니다.</p>
+      </div>
+      <div class="resource-card">
+        <span class="tag" style="background: rgba(239,68,68,0.12); color: var(--accent-red);">YouTube</span>
+        <h4>Paul Davids</h4>
+        <p>연주력과 이론의 균형. 영감을 자극하는 콘텐츠.</p>
+      </div>
+      <div class="resource-card">
+        <span class="tag" style="background: rgba(239,68,68,0.12); color: var(--accent-red);">YouTube</span>
+        <h4>Justin Guitar</h4>
+        <p>체계적인 초/중급 커리큘럼. 무료로 이용 가능합니다.</p>
+      </div>
+      <div class="resource-card">
+        <span class="tag" style="background: rgba(239,68,68,0.12); color: var(--accent-red);">YouTube</span>
+        <h4>Marty Music</h4>
+        <p>곡 카피에 강하고, 이론 설명도 친절합니다.</p>
+      </div>
+      <div class="resource-card">
+        <span class="tag" style="background: rgba(239,68,68,0.12); color: var(--accent-red);">YouTube</span>
+        <h4>fretjam</h4>
+        <p>스케일/코드 이론을 시각적으로 보여주는 데 탁월합니다.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">🛠️ 앱 & 도구</h3>
+    <div class="resource-grid">
+      <div class="resource-card">
+        <span class="tag" style="background: rgba(74,158,255,0.12); color: var(--accent-blue);">필수</span>
+        <h4>메트로놈</h4>
+        <p>리듬 연습에 반드시 필요합니다. 어떤 앱이든 OK.</p>
+      </div>
+      <div class="resource-card">
+        <span class="tag" style="background: rgba(16,185,129,0.12); color: var(--accent-green);">앱</span>
+        <h4>Functional Ear Trainer</h4>
+        <p>인터벌과 귀 훈련에 최적화된 무료 앱.</p>
+      </div>
+      <div class="resource-card">
+        <span class="tag" style="background: rgba(139,92,246,0.12); color: var(--accent-purple);">소프트웨어</span>
+        <h4>Guitar Pro / TuxGuitar</h4>
+        <p>TAB 분석, 느리게 재생. TuxGuitar는 무료.</p>
+      </div>
+      <div class="resource-card">
+        <span class="tag" style="background: rgba(245,158,11,0.12); color: var(--accent-orange);">앱</span>
+        <h4>Fretboard Trainer</h4>
+        <p>지판 음이름 암기 훈련용 앱.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA: Start Today ===== -->
+  <section class="animate-on-scroll">
+    <div class="cta-section">
+      <span class="section-label label-red">🚀 지금 바로</span>
+      <h2>오늘 시작할 3가지</h2>
+      <div class="cta-steps">
+        <div class="cta-step">
+          <div class="step-num">1</div>
+          <h4>🎯 백킹트랙 검색</h4>
+          <p>YouTube에서 <strong>"A minor backing track slow"</strong>을 검색하세요</p>
+        </div>
+        <div class="cta-step">
+          <div class="step-num">2</div>
+          <h4>🎸 펜타토닉 한 포지션</h4>
+          <p>A 마이너 펜타토닉 Box 1 (5프렛) 모양 하나만 익히세요</p>
+        </div>
+        <div class="cta-step">
+          <div class="step-num">3</div>
+          <h4>🎵 그냥 쳐보세요!</h4>
+          <p>백킹트랙을 틀고 아무렇게나 쳐보세요. 못 쳐도 OK, 이게 JAM의 시작입니다!</p>
+        </div>
+      </div>
+
+      <div class="danger-box" style="text-align: left; max-width: 600px; margin: 2rem auto 0;">
+        <strong>⚠️ 가장 중요한 한 가지:</strong><br>
+        이론만 공부하지 마세요. 스케일 5개 포지션을 다 외우는 것보다, <strong>1개 포지션으로 백킹트랙에 맞춰 음악적으로 연주하는 것</strong>이 100배 중요합니다. 항상 <strong>"소리"를 먼저</strong> 듣고, 이론은 그 소리를 설명하는 도구로 사용하세요.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========== Footer ========== -->
+<footer>
+  <p>🎸 Guitar Learning Roadmap · 기타를 이해하며 연주하는 그날까지 🤘</p>
+</footer>
+
+<!-- ========== JavaScript ========== -->
+<script>
+  // ===== Scroll Animation =====
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.animate-on-scroll').forEach(el => {
+    observer.observe(el);
+  });
+
+  // ===== Scale Tabs =====
+  document.querySelectorAll('.scale-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Deactivate all tabs
+      document.querySelectorAll('.scale-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.scale-panel').forEach(p => p.classList.remove('active'));
+
+      // Activate clicked tab
+      tab.classList.add('active');
+      const target = tab.dataset.target;
+      document.getElementById('panel-' + target).classList.add('active');
+    });
+  });
+
+  // ===== Active Nav Highlight =====
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100;
+      if (window.scrollY >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+
+    // Nav background on scroll
+    const nav = document.getElementById('mainNav');
+    if (window.scrollY > 50) {
+      nav.style.borderBottomColor = 'rgba(42, 42, 64, 0.8)';
+    } else {
+      nav.style.borderBottomColor = 'rgba(42, 42, 64, 0.3)';
+    }
+  });
+
+  // ===== SVG Note Hover Tooltip =====
+  const tooltip = document.getElementById('noteTooltip');
+
+  document.querySelectorAll('.fretboard-note').forEach(note => {
+    note.style.cursor = 'pointer';
+
+    note.addEventListener('mouseenter', (e) => {
+      const noteName = note.dataset.note;
+      if (noteName) {
+        tooltip.textContent = noteName;
+        tooltip.classList.add('show');
+      }
+    });
+
+    note.addEventListener('mousemove', (e) => {
+      tooltip.style.left = (e.clientX + 12) + 'px';
+      tooltip.style.top = (e.clientY - 30) + 'px';
+    });
+
+    note.addEventListener('mouseleave', () => {
+      tooltip.classList.remove('show');
+    });
+
+    // Hover effect
+    note.addEventListener('mouseenter', () => {
+      const circle = note.querySelector('circle');
+      if (circle) {
+        circle.style.transition = 'all 0.2s';
+        circle.style.filter = 'brightness(1.3) drop-shadow(0 0 6px currentColor)';
+      }
+    });
+
+    note.addEventListener('mouseleave', () => {
+      const circle = note.querySelector('circle');
+      if (circle) {
+        circle.style.filter = '';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
